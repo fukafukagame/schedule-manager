@@ -1,0 +1,97 @@
+[
+  {
+    "id": "1a516ba3-01c3-46e7-81f7-bb76024f0dc6",
+    "title": "監視する上位20CPを更新",
+    "description": "レポートを変更して正常動作するか確認",
+    "priority": "中",
+    "status": "未着手",
+    "deadline": "",
+    "category": "監視",
+    "createdAt": "2026-03-02T16:14:13.003635",
+    "updatedAt": "2026-03-02T16:14:13.003660"
+  },
+  {
+    "id": "acbaaeaf-9740-4b0c-85a3-e4ca1a2c3177",
+    "title": "更新サイトを1つ復元",
+    "description": "次：鉄分サイトのサムネ画像を手配（0/3完了）",
+    "priority": "中",
+    "status": "完了",
+    "deadline": "",
+    "category": "サイト管理",
+    "createdAt": "2026-03-02T16:14:14.329490",
+    "updatedAt": "2026-03-02T19:33:11.789248",
+    "projectId": "bc0bbcc1-75c9-471e-ba3b-9e01cf0bae20"
+  },
+  {
+    "id": "c318d6fa-6495-40a9-8424-71d10500b5c1",
+    "title": "更新サイトを5つ作成",
+    "description": "作成中：にんにく、医療費控除（0/5完了）",
+    "priority": "中",
+    "status": "未着手",
+    "deadline": "",
+    "category": "サイト管理",
+    "createdAt": "2026-03-02T16:14:15.556447",
+    "updatedAt": "2026-03-02T19:33:42.692859",
+    "timeSpent": 120,
+    "projectId": "bc0bbcc1-75c9-471e-ba3b-9e01cf0bae20"
+  },
+  {
+    "id": "f2af9821-226a-4a0d-8652-1da9bee6ab69",
+    "title": "セキュリティの返信内容を作成",
+    "description": "・他社の提案をまとめ、コスパが良いか聞く\n・松竹梅の提案をしてもらえるか確認する",
+    "priority": "中",
+    "status": "未着手",
+    "deadline": "",
+    "category": "セキュリティ",
+    "createdAt": "2026-03-02T16:14:16.953939",
+    "updatedAt": "2026-03-02T18:02:05.402956",
+    "projectId": "cbcad381-6892-466c-8b3b-07c197b2d2c7"
+  },
+  {
+    "id": "aab032f5-ee6b-45e5-8e4e-c69e3b3553fe",
+    "title": "GA4・Looker Studioレクチャー",
+    "description": "・GA4でデバイス毎のデータを見る方法\n・レポートの作成方法\n・Looker Studioでレポートを作成する方法\n→メモにまとめる",
+    "priority": "中",
+    "status": "未着手",
+    "deadline": "",
+    "category": "レクチャー",
+    "createdAt": "2026-03-02T16:14:18.726548",
+    "updatedAt": "2026-03-02T16:14:18.726573"
+  },
+  {
+    "id": "e6ff1b8b-983e-44ad-a754-41d978d8c599",
+    "title": "AIにスケジュール管理してもらう",
+    "description": "まずは相談",
+    "priority": "中",
+    "status": "進行中",
+    "deadline": "",
+    "category": "効率化",
+    "createdAt": "2026-03-02T16:14:19.576357",
+    "updatedAt": "2026-03-02T16:14:19.576387"
+  },
+  {
+    "id": "fbd92edb-29aa-4b44-86df-9c6c32577732",
+    "title": "清水PCで社内サーバーを構築する",
+    "description": "・ブート用USBを作成\n・Ubuntuインストール\n・Claude Code CLIインストール\n・サイトの監視botを設置",
+    "priority": "中",
+    "status": "未着手",
+    "deadline": "",
+    "category": "インフラ",
+    "createdAt": "2026-03-02T16:14:21.054718",
+    "updatedAt": "2026-03-02T16:49:04.654629",
+    "timeSpent": 8
+  },
+  {
+    "id": "45bb90ea-c25b-432c-b4c1-28d46a1591b1",
+    "title": "株主優待キャンペーン 審査落ち広告の再審査",
+    "description": "記事の最上級表現を修正\n各記事の1ページの文字数を修正",
+    "priority": "高",
+    "status": "進行中",
+    "deadline": "",
+    "category": "",
+    "timeSpent": 0,
+    "projectId": "bc0bbcc1-75c9-471e-ba3b-9e01cf0bae20",
+    "createdAt": "2026-03-02T18:19:48.561183",
+    "updatedAt": "2026-03-02T19:34:25.994299"
+  }
+]

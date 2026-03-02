@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タスク管理</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <button id="btn-back" class="btn-back" onclick="navigateTo('#projects')" style="display:none;">← 戻る</button>
+    <h1 id="header-title">タスク管理</h1>
+    <span id="breadcrumb" class="breadcrumb"></span>
+  </div>
+  <div class="header-stats">
+    <span>全体: <strong id="stat-total">0</strong></span>
+    <span>残り: <strong id="stat-pending">0</strong></span>
+    <span>完了: <strong id="stat-done">0</strong></span>
+  </div>
+</header>
+
+<div class="app-layout">
+  <div class="main-panel">
+    <!-- プロジェクト一覧ビュー -->
+    <div id="project-view" class="container">
+      <div class="toolbar">
+        <button class="btn-add" onclick="openAddProject()">+ プロジェクト追加</button>
+        <input type="text" id="project-search" placeholder="プロジェクト検索...">
+      </div>
+      <div id="project-list" class="project-list"></div>
+    </div>
+
+    <!-- タスク一覧ビュー -->
+    <div id="task-view" class="container" style="display:none;">
+      <div class="toolbar">
+        <button class="btn-add" onclick="openAdd()">+ タスク追加</button>
+        <select id="filter-status">
+          <option value="">全ステータス</option>
+          <option value="未着手">未着手</option>
+          <option value="進行中">進行中</option>
+          <option value="完了">完了</option>
+        </select>
+        <select id="filter-priority">
+          <option value="">全優先度</option>
+          <option value="高">高</option>
+          <option value="中">中</option>
+          <option value="低">低</option>
+        </select>
+        <select id="sort-by">
+          <option value="created">作成日順</option>
+          <option value="deadline">期限順</option>
+          <option value="priority">優先度順</option>
+          <option value="status">ステータス順</option>
+        </select>
+        <input type="text" id="search" placeholder="検索...">
+      </div>
+
+      <div id="task-list" class="task-list"></div>
+    </div>
+  </div>
+
+  <aside class="terminal-sidebar">
+    <div class="terminal-header">
+      <span class="terminal-title">Terminal</span>
+      <button id="btn-new-terminal" class="btn-new-terminal">New</button>
+    </div>
+    <div id="term-container" class="term-container"></div>
+  </aside>
+</div>
+
+<!-- モーダル -->
+<div id="modal" class="modal-overlay">
+  <div class="modal">
+    <h2 id="modal-title">タスク追加</h2>
+    <form id="task-form">
+      <div class="form-group">
+        <label for="f-title">タイトル *</label>
+        <input type="text" id="f-title" required placeholder="タスク名を入力">
+      </div>
+      <div class="form-group">
+        <label for="f-description">説明</label>
+        <textarea id="f-description" placeholder="詳細を入力（任意）"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-priority">優先度</label>
+          <select id="f-priority">
+            <option value="高">高</option>
+            <option value="中" selected>中</option>
+            <option value="低">低</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-status">ステータス</label>
+          <select id="f-status">
+            <option value="未着手" selected>未着手</option>
+            <option value="進行中">進行中</option>
+            <option value="完了">完了</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-deadline">期限</label>
+          <input type="date" id="f-deadline">
+        </div>
+        <div class="form-group">
+          <label for="f-category">カテゴリ</label>
+          <input type="text" id="f-category" placeholder="例: 開発, 会議">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-project">プロジェクト</label>
+          <select id="f-project">
+            <option value="">未分類</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-timeSpent">作業時間</label>
+          <input type="text" id="f-timeSpent" readonly placeholder="タイマーで計測されます" style="background:#f8f8f8;cursor:default;">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" onclick="closeModal()">キャンセル</button>
+        <button type="submit" class="btn-save">保存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- プロジェクトモーダル -->
+<div id="project-modal" class="modal-overlay">
+  <div class="modal">
+    <h2 id="project-modal-title">プロジェクト追加</h2>
+    <form id="project-form">
+      <div class="form-group">
+        <label for="pf-name">プロジェクト名 *</label>
+        <input type="text" id="pf-name" required placeholder="プロジェクト名を入力">
+      </div>
+      <div class="form-group">
+        <label for="pf-description">説明</label>
+        <textarea id="pf-description" placeholder="プロジェクトの説明（任意）"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="pf-color">テーマカラー</label>
+        <input type="color" id="pf-color" value="#4a6cf7">
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" onclick="closeProjectModal()">キャンセル</button>
+        <button type="submit" class="btn-save">保存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/lib/addon-fit.js"></script>
+<script src="app.js"></script>
+<script src="terminal.js"></script>
+</body>
+</html>
